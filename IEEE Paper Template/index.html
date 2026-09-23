@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A responsive, print-ready IEEE-style conference paper template built with semantic HTML and CSS.">
+    <meta name="theme-color" content="#0b1f33">
+    <title>IEEE-Style Paper Template</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b1f33'/%3E%3Crect x='13' y='12' width='38' height='40' rx='3' fill='%23fff'/%3E%3Cpath d='M19 20h12M19 25h12M19 30h12M35 20h10M35 25h10M35 30h10M19 37h12M35 37h10M19 42h12M35 42h10' stroke='%23c23a43' stroke-width='2'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="workspace-bar screen-only">
+      <div class="workspace-brand" aria-label="Document type">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
+        <span>
+          <strong>IEEE manuscript</strong>
+          <small>HTML + CSS template</small>
+        </span>
+      </div>
+      <p class="workspace-hint"><span class="live-dot" aria-hidden="true"></span> Click the paper to edit your copy</p>
+      <div class="workspace-actions" aria-label="Document specifications">
+        <span>Letter</span>
+        <kbd>Ctrl/P</kbd>
+        <span>Save as PDF</span>
+      </div>
+    </header>
+
+    <main class="workspace-shell">
+      <div class="paper-stage">
+        <article class="paper" contenteditable="true" spellcheck="true" aria-label="Editable IEEE-style conference paper">
+          <header class="paper-header">
+            <p class="paper-series">2026 International Conference on Intelligent Systems and Computing</p>
+            <h1>Adaptive Edge Intelligence for Energy-Aware Urban Sensing</h1>
+            <p class="subtitle">A concise, editable title can clarify the contribution without repeating the abstract</p>
+
+            <div class="author-grid" aria-label="Authors and affiliations">
+              <address class="author-card">
+                <strong>First A. Author</strong>
+                <span>Department of Computer Science</span>
+                <span>University Name, City, Country</span>
+                <a href="mailto:first.author@example.edu">first.author@example.edu</a>
+              </address>
+              <address class="author-card">
+                <strong>Second B. Author</strong>
+                <span>School of Engineering</span>
+                <span>Institute Name, City, Country</span>
+                <a href="mailto:second.author@example.edu">second.author@example.edu</a>
+              </address>
+              <address class="author-card">
+                <strong>Third C. Author</strong>
+                <span>Research Laboratory</span>
+                <span>Organization, City, Country</span>
+                <a href="mailto:third.author@example.org">third.author@example.org</a>
+              </address>
+              <address class="author-card">
+                <strong>Fourth D. Author</strong>
+                <span>Department of Electrical Engineering</span>
+                <span>University Name, City, Country</span>
+                <a href="mailto:fourth.author@example.edu">fourth.author@example.edu</a>
+              </address>
+            </div>
+
+            <div class="abstract-block">
+              <p><strong><em>Abstract—</em></strong>This document is a responsive IEEE-style conference paper template written in semantic HTML and CSS. Replace this paragraph with a compact statement of the problem, the proposed method, the principal result, and the significance of the work. Keep the abstract self-contained: avoid citations, unexplained abbreviations, displayed equations, and claims that do not appear in the paper.</p>
+              <p><strong><em>Index Terms—</em></strong>edge computing, energy efficiency, intelligent sensing, research template, urban systems.</p>
+            </div>
+          </header>
+
+          <div class="paper-body">
+            <section aria-labelledby="introduction">
+              <h2 id="introduction"><span>I.</span> Introduction</h2>
+              <p><span class="drop-cap">U</span>rban sensing platforms increasingly combine low-power devices, edge processors, and learning-based decision systems. Their value depends on a difficult balance: inference should remain accurate while communication and computation stay within tight energy budgets. Centralized approaches can provide strong models, but they introduce latency, network dependence, and privacy concerns <a class="citation" href="#ref-1">[1]</a>.</p>
+              <p>This paper studies an adaptive controller that selects sensing rates and model complexity from observed workload conditions. The main contributions are threefold: (1) a lightweight formulation for joint energy and accuracy control; (2) an edge-first architecture that limits unnecessary transmission; and (3) an evaluation protocol that reports both predictive and system-level outcomes.</p>
+              <p>The remainder of the paper is organized as follows. Section II summarizes related work. Section III defines the system model, Section IV presents the method, and Section V discusses the results.</p>
+            </section>
+
+            <section aria-labelledby="related-work">
+              <h2 id="related-work"><span>II.</span> Related Work</h2>
+              <p>Prior research spans adaptive sampling, mobile inference, and resource-aware learning. Dynamic sampling reduces redundant observations by reacting to signal variation <a class="citation" href="#ref-2">[2]</a>, while split-computing methods distribute inference across device, edge, and cloud tiers <a class="citation" href="#ref-3">[3]</a>. These lines of work motivate a controller that treats sensing and inference as one decision rather than independent optimization stages.</p>
+              <h3>A. Adaptive Sensing</h3>
+              <p>Adaptive policies commonly use thresholds, uncertainty scores, or learned state models. Threshold methods are inexpensive but can be brittle under distribution shift. Learned policies are more flexible, although their own execution cost should be included in the energy model.</p>
+              <h3>B. Edge Intelligence</h3>
+              <p>Edge execution can improve response time and data locality. The resulting design space includes model size, quantization level, batch size, and radio use. A practical study should disclose the hardware, measurement interval, and baseline configuration so the reported gains remain reproducible.</p>
+            </section>
+
+            <section aria-labelledby="system-model">
+              <h2 id="system-model"><span>III.</span> System Model</h2>
+              <p>Consider a set of sensor nodes <em>i</em> ∈ {1, …, <em>N</em>} connected to a nearby edge gateway. At decision step <em>t</em>, each node selects a sampling rate <em>s</em><sub>i,t</sub> and an inference profile <em>m</em><sub>i,t</sub>. The objective minimizes normalized energy while penalizing predictions below a target accuracy.</p>
+
+              <div class="equation" role="math" aria-label="Objective function: minimize energy plus lambda times accuracy penalty">
+                <span class="equation-expression"><em>J</em> = min <span class="sum">∑</span><sub>t=1</sub><sup>T</sup> [ <em>E</em><sub>t</sub> + λ max(0, <em>A</em><sup>*</sup> − <em>A</em><sub>t</sub>) ]</span>
+                <span class="equation-number">(1)</span>
+              </div>
+
+              <p>Here, <em>E</em><sub>t</sub> is total energy, <em>A</em><sub>t</sub> is observed task accuracy, <em>A</em><sup>*</sup> is the required accuracy, and λ controls the penalty. Define all symbols immediately before or after each equation, and number only equations referenced later.</p>
+
+              <figure class="paper-figure">
+                <svg viewBox="0 0 520 230" role="img" aria-labelledby="chart-title chart-desc">
+                  <title id="chart-title">Accuracy and normalized energy across controller operating points</title>
+                  <desc id="chart-desc">Accuracy rises from 84 to 94 percent as the operating point increases, while normalized energy rises from 0.42 to 0.86.</desc>
+                  <rect x="0" y="0" width="520" height="230" fill="#ffffff"/>
+                  <g stroke="#c8ccd1" stroke-width="1">
+                    <line x1="58" y1="34" x2="58" y2="184"/>
+                    <line x1="58" y1="184" x2="478" y2="184"/>
+                    <line x1="58" y1="146" x2="478" y2="146" stroke-dasharray="4 5"/>
+                    <line x1="58" y1="108" x2="478" y2="108" stroke-dasharray="4 5"/>
+                    <line x1="58" y1="70" x2="478" y2="70" stroke-dasharray="4 5"/>
+                  </g>
+                  <g fill="#30343a" font-family="Arial, sans-serif" font-size="13">
+                    <text x="28" y="188">0</text>
+                    <text x="17" y="150">25</text>
+                    <text x="17" y="112">50</text>
+                    <text x="17" y="74">75</text>
+                    <text x="10" y="38">100</text>
+                    <text x="82" y="206">P1</text><text x="174" y="206">P2</text>
+                    <text x="266" y="206">P3</text><text x="358" y="206">P4</text><text x="450" y="206">P5</text>
+                  </g>
+                  <polyline points="88,58 180,53 272,47 364,44 456,41" fill="none" stroke="#0b1f33" stroke-width="4"/>
+                  <polyline points="88,120 180,108 272,94 364,72 456,54" fill="none" stroke="#b6333c" stroke-width="4" stroke-dasharray="8 5"/>
+                  <g fill="#0b1f33"><circle cx="88" cy="58" r="4"/><circle cx="180" cy="53" r="4"/><circle cx="272" cy="47" r="4"/><circle cx="364" cy="44" r="4"/><circle cx="456" cy="41" r="4"/></g>
+                  <g fill="#b6333c"><rect x="84" y="116" width="8" height="8"/><rect x="176" y="104" width="8" height="8"/><rect x="268" y="90" width="8" height="8"/><rect x="360" y="68" width="8" height="8"/><rect x="452" y="50" width="8" height="8"/></g>
+                  <g fill="#30343a" font-family="Arial, sans-serif" font-size="12">
+                    <line x1="310" y1="219" x2="335" y2="219" stroke="#0b1f33" stroke-width="3"/><text x="341" y="223">Accuracy</text>
+                    <line x1="405" y1="219" x2="430" y2="219" stroke="#b6333c" stroke-width="3" stroke-dasharray="6 4"/><text x="436" y="223">Energy</text>
+                  </g>
+                </svg>
+                <figcaption><strong>Fig. 1.</strong> Example trade-off between task accuracy and normalized energy. Replace this chart with a high-resolution figure and describe the takeaway in the main text.</figcaption>
+              </figure>
+            </section>
+
+            <section aria-labelledby="methodology">
+              <h2 id="methodology"><span>IV.</span> Proposed Method</h2>
+              <p>The controller receives a state vector containing signal variance, queue occupancy, recent inference confidence, and battery state. It then chooses an action from a small set of validated sensing–model pairs. Restricting the action set reduces decision overhead and prevents unsafe configurations.</p>
+              <h3>A. Controller Design</h3>
+              <p>At initialization, each device profiles candidate actions on a calibration trace. Runtime scores combine predicted energy and an accuracy-risk term. A short hysteresis window prevents rapid oscillation between adjacent profiles.</p>
+              <div class="algorithm" role="group" aria-label="Algorithm 1 adaptive profile selection">
+                <div class="algorithm-title"><strong>Algorithm 1</strong> Adaptive profile selection</div>
+                <ol>
+                  <li>Observe state <em>x</em><sub>t</sub> and available energy <em>b</em><sub>t</sub>.</li>
+                  <li>Estimate cost <em>J</em>(<em>a</em> | <em>x</em><sub>t</sub>) for each feasible action <em>a</em>.</li>
+                  <li>Reject actions that violate the accuracy floor or battery constraint.</li>
+                  <li>Select the lowest-cost action and apply the hysteresis rule.</li>
+                  <li>Update the rolling statistics using the observed outcome.</li>
+                </ol>
+              </div>
+              <h3>B. Complexity</h3>
+              <p>For <em>K</em> candidate profiles, selection requires O(<em>K</em>) score evaluations and O(1) state updates. The controller stores only rolling statistics, so memory use does not grow with deployment time.</p>
+            </section>
+
+            <section aria-labelledby="evaluation">
+              <h2 id="evaluation"><span>V.</span> Experimental Evaluation</h2>
+              <p>We evaluate three baselines using identical traces and hardware settings. Report the number of runs, random seeds, confidence intervals, and the method used to measure energy. If a public dataset is used, cite its original release and state any filtering or preprocessing.</p>
+
+              <table>
+                <caption><strong>TABLE I</strong><br>Example Comparison of Controller Performance</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Method</th>
+                    <th scope="col">Accuracy (%)</th>
+                    <th scope="col">Energy (J)</th>
+                    <th scope="col">Latency (ms)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Fixed-high</th>
+                    <td>94.1 ± 0.4</td>
+                    <td>18.7</td>
+                    <td>42</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Threshold</th>
+                    <td>91.8 ± 0.6</td>
+                    <td>13.2</td>
+                    <td>39</td>
+                  </tr>
+                  <tr class="proposed-row">
+                    <th scope="row">Proposed</th>
+                    <td><strong>93.7 ± 0.3</strong></td>
+                    <td><strong>10.9</strong></td>
+                    <td><strong>34</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h3>A. Main Results</h3>
+              <p>Table I shows the format for a compact quantitative comparison. The proposed controller approaches the fixed-high accuracy while using less energy and reducing latency. In a final manuscript, connect each numerical claim to a table or figure and distinguish statistical significance from practical importance.</p>
+              <h3>B. Ablation and Limitations</h3>
+              <p>An ablation study should isolate the effect of each state feature and decision rule. Discuss failure cases, sensitivity to λ, and the limits of transfer to new devices or sensing conditions. Transparent limitations help readers understand where additional evidence is needed.</p>
+            </section>
+
+            <section aria-labelledby="conclusion">
+              <h2 id="conclusion"><span>VI.</span> Conclusion</h2>
+              <p>This template demonstrates the structure of a concise IEEE-style paper in standards-based HTML and CSS. The sample study illustrates how to summarize a problem, formalize an objective, describe a method, and report results in a two-column layout. Before submission, replace all sample material, verify every citation, and compare the exported PDF with the official template for the target conference or journal.</p>
+            </section>
+
+            <section aria-labelledby="acknowledgment">
+              <h2 id="acknowledgment">Acknowledgment</h2>
+              <p>The authors thank the anonymous reviewers and project collaborators. Add grant numbers, institutional support, and required disclosures here; omit this section for double-blind review when the venue requires it.</p>
+            </section>
+
+            <section class="references" aria-labelledby="references">
+              <h2 id="references">References</h2>
+              <ol>
+                <li id="ref-1">A. A. Author and B. B. Author, “Title of journal article,” <em>Abbreviated Journal Title</em>, vol. 12, no. 3, pp. 101–112, Mar. 2025.</li>
+                <li id="ref-2">C. C. Author, “Title of conference paper,” in <em>Proc. International Conference Name</em>, City, Country, 2024, pp. 25–31.</li>
+                <li id="ref-3">D. D. Author <em>et al.</em>, “Title of article with multiple authors,” <em>IEEE Transactions on Example Systems</em>, vol. 8, no. 2, pp. 210–222, Jun. 2024.</li>
+                <li>E. E. Author, <em>Title of Book</em>, 2nd ed. City, Country: Publisher, 2023.</li>
+                <li>F. F. Author, “Title of chapter,” in <em>Title of Edited Volume</em>, G. G. Editor, Ed. City, Country: Publisher, 2022, ch. 4, pp. 55–78.</li>
+                <li>Organization Name, “Dataset or technical standard title,” Version 2.1, 2025. [Online]. Available: https://example.org/resource</li>
+              </ol>
+            </section>
+          </div>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>

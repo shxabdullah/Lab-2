@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070b12">
+  <meta name="description" content="RideMate — a focused motorcycle dashboard for rides, trips, bike health, and road-ready planning.">
+  <title>RideMate — Rider Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23080d16'/%3E%3Ccircle cx='19' cy='42' r='9' fill='none' stroke='%235ad9ff' stroke-width='5'/%3E%3Ccircle cx='46' cy='42' r='9' fill='none' stroke='%235ad9ff' stroke-width='5'/%3E%3Cpath d='M19 42l11-19 9 19M27 31h15l4 11M30 23h10' fill='none' stroke='white' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <svg class="svg-sprite" aria-hidden="true">
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+    <symbol id="i-bike" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M5.5 17.5 10 9h4l4.5 8.5M8.2 13h8.3M10 9 8 6h3M14 9l2-3h3"/></symbol>
+    <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4.9 19a9 9 0 1 1 14.2 0"/><path d="m12 12 4-4"/><circle cx="12" cy="12" r="1.5"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h3a3 3 0 0 0 3-3V8a3 3 0 0 1 3-3"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></symbol>
+    <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5-5L12 3.6 8.4 7.2 6.1 4.9a4 4 0 0 0 5 5L19 17.8a1.8 1.8 0 1 1-2.6 2.6l-7.8-7.8"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 6h15a2 2 0 0 1 2 2v11H5a2 2 0 0 1-2-2V6.5A3.5 3.5 0 0 1 6.5 3H18"/><path d="M16 11h5v4h-5a2 2 0 0 1 0-4Z"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.6v-.2h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M14 7l5 5-5 5"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M17.5 19H7a5 5 0 1 1 1-9.9A7 7 0 0 1 21 12.5 3.5 3.5 0 0 1 17.5 19Z"/><path d="m8 4 1-2M4 7 2 6M14 5l1-2"/></symbol>
+    <symbol id="i-wind" viewBox="0 0 24 24"><path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 2S5 10 5 15a7 7 0 0 0 14 0c0-5-7-13-7-13Z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H3v2a4 4 0 0 0 4 4M17 6h4v2a4 4 0 0 1-4 4"/></symbol>
+    <symbol id="i-fuel" viewBox="0 0 24 24"><path d="M4 22V4a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v18M3 22h13M6 6h7v5H6z"/><path d="m15 7 3 3v8a2 2 0 0 0 4 0V9l-2-2"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9 2.2 18a2 2 0 0 0 1.7 3h16.2a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  </svg>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="RideMate home">
+        <span class="brand-mark"><svg><use href="#i-bike"></use></svg></span>
+        <span><b>RIDE</b>MATE<small>RIDER OS</small></span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#" aria-current="page"><svg><use href="#i-grid"></use></svg><span>Dashboard</span></a>
+        <a class="nav-link" href="#my-bike"><svg><use href="#i-bike"></use></svg><span>My Bike</span></a>
+        <a class="nav-link" href="#live-ride"><svg><use href="#i-gauge"></use></svg><span>Live Ride</span><i>LIVE</i></a>
+        <a class="nav-link" href="#trips"><svg><use href="#i-route"></use></svg><span>Trips</span></a>
+        <a class="nav-link" href="#history"><svg><use href="#i-history"></use></svg><span>Ride History</span></a>
+        <a class="nav-link" href="#maintenance"><svg><use href="#i-tool"></use></svg><span>Maintenance</span></a>
+        <a class="nav-link" href="#expenses"><svg><use href="#i-wallet"></use></svg><span>Expenses</span></a>
+        <a class="nav-link" href="#riders"><svg><use href="#i-users"></use></svg><span>Riders</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a class="nav-link" href="#settings"><svg><use href="#i-settings"></use></svg><span>Settings</span></a>
+        <div class="ride-streak"><span>7</span><div><b>Day streak</b><small>Best: 12 days</small></div></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <label class="search-box">
+          <svg><use href="#i-search"></use></svg>
+          <input type="search" placeholder="Search rides, trips, riders…" aria-label="Search RideMate">
+          <kbd>⌘ K</kbd>
+        </label>
+        <div class="top-actions">
+          <button class="icon-button" type="button" aria-label="Switch theme"><svg><use href="#i-sun"></use></svg></button>
+          <button class="icon-button notification" type="button" aria-label="Notifications"><svg><use href="#i-bell"></use></svg><span></span></button>
+          <button class="profile-button" type="button" aria-label="Open Abdullah's profile">
+            <span class="profile-copy"><b>Sheikh Abdullah</b><small>Level 12 Rider</small></span>
+            <span class="avatar">SA</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="dashboard">
+        <section class="welcome-bar">
+          <div>
+            <p class="eyebrow"><span></span> Wednesday, 23 September</p>
+            <h1>Good evening, Abdullah.</h1>
+            <p>Your bike is ready. The road to Murree is looking clear.</p>
+          </div>
+          <a class="primary-button" href="#live-ride"><span>Start a ride</span><svg><use href="#i-arrow"></use></svg></a>
+        </section>
+
+        <section class="hero-grid" aria-label="Live ride and bike status">
+          <article class="card speed-card" id="live-ride">
+            <div class="card-topline">
+              <div><span class="section-kicker">Live telemetry</span><h2>Ride mode</h2></div>
+              <span class="signal-pill"><i></i> Connected</span>
+            </div>
+            <div class="speedometer" aria-label="Current speed 72 kilometers per hour">
+              <div class="speed-ring">
+                <div class="speed-face">
+                  <span class="tick t1">0</span><span class="tick t2">40</span><span class="tick t3">80</span><span class="tick t4">120</span><span class="tick t5">160</span><span class="tick t6">200</span>
+                  <div class="speed-value"><strong>72</strong><span>KM/H</span></div>
+                  <div class="needle"><i></i></div>
+                </div>
+              </div>
+              <div class="ride-mode"><span>MODE</span><b>URBAN</b></div>
+            </div>
+            <div class="telemetry-row">
+              <div><span>RPM</span><b>4,800</b></div><i></i>
+              <div><span>GEAR</span><b>4</b></div><i></i>
+              <div><span>ENGINE</span><b>78°C</b></div>
+            </div>
+          </article>
+
+          <article class="card bike-card" id="my-bike">
+            <div class="bike-glow"></div>
+            <div class="card-topline bike-heading">
+              <div><span class="section-kicker">My bike · Primary</span><h2>Yamaha YBR 125G</h2><p>2025 · Graphite Blue</p></div>
+              <span class="status-badge"><i></i> Excellent</span>
+            </div>
+            <div class="bike-stage" aria-hidden="true">
+              <div class="machine-wordmark">YBR <span>/ 125G</span></div>
+              <img src="assets/ridemate-motorcycle.png" alt="" width="1536" height="1024">
+              <span class="asset-note">Precision-tuned daily machine</span>
+            </div>
+            <div class="bike-specs">
+              <div><span>Odometer</span><strong>8,420 <small>KM</small></strong></div>
+              <div><span>Fuel range</span><strong>286 <small>KM</small></strong></div>
+              <div><span>Last service</span><strong>7,850 <small>KM</small></strong></div>
+            </div>
+            <div class="fuel-line"><div><span>Fuel level</span><b>74%</b></div><div class="progress-track"><span style="width:74%"></span></div></div>
+          </article>
+        </section>
+
+        <section class="stats-grid" aria-label="Ride statistics">
+          <article class="stat-card"><span class="stat-icon"><svg><use href="#i-history"></use></svg></span><div><small>Total rides</small><strong>124</strong><p><b>+8</b> this month</p></div><span class="mini-trend up">↗</span></article>
+          <article class="stat-card"><span class="stat-icon"><svg><use href="#i-route"></use></svg></span><div><small>Total distance</small><strong>8,420 <em>km</em></strong><p><b>+642</b> this month</p></div><span class="mini-bars"><i></i><i></i><i></i><i></i><i></i></span></article>
+          <article class="stat-card"><span class="stat-icon"><svg><use href="#i-gauge"></use></svg></span><div><small>Average speed</small><strong>54 <em>km/h</em></strong><p>Top avg. this week</p></div><span class="mini-trend">—</span></article>
+          <article class="stat-card"><span class="stat-icon"><svg><use href="#i-bike"></use></svg></span><div><small>Ride time</small><strong>186 <em>hrs</em></strong><p><b>14.5h</b> this month</p></div><span class="mini-bars alt"><i></i><i></i><i></i><i></i><i></i></span></article>
+        </section>
+
+        <section class="trip-grid" id="trips" aria-label="Upcoming route and trip">
+          <article class="card map-card">
+            <div class="card-topline">
+              <div><span class="section-kicker">Next route</span><h2>Islamabad to Murree</h2></div>
+              <button class="ghost-button" type="button">View route <svg><use href="#i-arrow"></use></svg></button>
+            </div>
+            <div class="route-map" aria-label="Route map from Islamabad to Murree, 67 kilometers">
+              <div class="map-grid"></div>
+              <svg viewBox="0 0 760 300" role="img" aria-hidden="true">
+                <defs>
+                  <linearGradient id="routeGradient" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3679ff"/><stop offset="1" stop-color="#5ad9ff"/></linearGradient>
+                  <filter id="routeGlow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                </defs>
+                <path class="terrain-line tl-1" d="M-30 235C95 165 135 270 250 210S445 125 540 165s150-5 250-95"/>
+                <path class="terrain-line tl-2" d="M-20 270c130-66 175 20 285-20s150-125 280-100 130-5 235-82"/>
+                <path class="terrain-line tl-3" d="M-15 190c110-80 155 0 255-55s170-68 260-30 190-60 275-85"/>
+                <path class="route-shadow" d="M105 232C157 230 178 197 222 196c54-1 73 41 126 25 48-15 39-61 86-72 52-12 72 36 120 12 38-19 27-63 78-83"/>
+                <path class="route-line" d="M105 232C157 230 178 197 222 196c54-1 73 41 126 25 48-15 39-61 86-72 52-12 72 36 120 12 38-19 27-63 78-83"/>
+                <circle class="route-start" cx="105" cy="232" r="8"/><circle class="route-ring" cx="105" cy="232" r="16"/>
+                <circle class="route-end" cx="632" cy="78" r="9"/><circle class="route-ring end" cx="632" cy="78" r="18"/>
+              </svg>
+              <span class="map-place start"><i></i> Islamabad<small>Blue Area</small></span>
+              <span class="map-place end"><i></i> Murree<small>Kashmir Point</small></span>
+              <div class="map-summary"><span><b>67</b> KM</span><i></i><span><b>1h 40m</b> ETA</span><i></i><span><b>2,291m</b> ELEV.</span></div>
+            </div>
+          </article>
+
+          <article class="card trip-card">
+            <div class="trip-accent"></div>
+            <div class="card-topline">
+              <div><span class="section-kicker">Upcoming trip</span><h2>Murree Sunrise Run</h2></div>
+              <span class="weather-chip"><svg><use href="#i-cloud"></use></svg> 18°C</span>
+            </div>
+            <div class="trip-date-block"><span>SEP</span><strong>28</strong><i>2026</i></div>
+            <div class="trip-info-list">
+              <div><span class="info-icon"><svg><use href="#i-calendar"></use></svg></span><p><small>Departure</small><b>Monday · 08:00 AM</b></p></div>
+              <div><span class="info-icon"><svg><use href="#i-pin"></use></svg></span><p><small>Meet point</small><b>F-6 Markaz, Islamabad</b></p></div>
+              <div><span class="info-icon"><svg><use href="#i-clock"></use></svg></span><p><small>Ride plan</small><b>67 km · 1h 40m</b></p></div>
+            </div>
+            <div class="trip-footer">
+              <div class="rider-stack" aria-label="Six riders joining"><span>AH</span><span>HM</span><span>SK</span><span>+3</span></div>
+              <a class="compact-button" href="#riders">Trip details <svg><use href="#i-chevron"></use></svg></a>
+            </div>
+          </article>
+        </section>
+
+        <section class="operations-grid" aria-label="Bike health, expenses, and recent rides">
+          <article class="card health-card" id="maintenance">
+            <div class="card-topline">
+              <div><span class="section-kicker">Machine status</span><h2>Bike health</h2></div>
+              <span class="health-score">84<small>/100</small></span>
+            </div>
+            <div class="health-list">
+              <div class="health-row"><div><span>Engine oil</span><b>68%</b></div><div class="health-track"><i style="width:68%"></i></div><small>Check in 850 km</small></div>
+              <div class="health-row"><div><span>Brake pads</span><b>82%</b></div><div class="health-track"><i style="width:82%"></i></div><small>Good</small></div>
+              <div class="health-row"><div><span>Chain tension</span><b>74%</b></div><div class="health-track"><i style="width:74%"></i></div><small>Good</small></div>
+              <div class="health-row"><div><span>Tire life</span><b>85%</b></div><div class="health-track"><i style="width:85%"></i></div><small>Excellent</small></div>
+            </div>
+            <div class="service-callout"><span><svg><use href="#i-tool"></use></svg></span><div><small>Next service in</small><b>850 KM</b><p>Oil change · Chain adjustment</p></div><button type="button" aria-label="Open service schedule"><svg><use href="#i-chevron"></use></svg></button></div>
+          </article>
+
+          <article class="card expense-card" id="expenses">
+            <div class="card-topline">
+              <div><span class="section-kicker">September</span><h2>Ride expenses</h2></div>
+              <span class="budget-pill">72% of budget</span>
+            </div>
+            <div class="expense-total"><span>Spent this month</span><strong><small>Rs.</small> 11,300</strong><p>Rs. 4,400 left in your riding budget</p></div>
+            <div class="expense-chart" aria-label="Monthly expense bar chart">
+              <div style="--bar:78%"><i></i><span>Fuel</span><b>6.4k</b></div>
+              <div style="--bar:43%"><i></i><span>Service</span><b>2.5k</b></div>
+              <div style="--bar:22%"><i></i><span>Parking</span><b>0.6k</b></div>
+              <div style="--bar:35%"><i></i><span>Trips</span><b>1.8k</b></div>
+            </div>
+            <div class="fuel-summary"><span class="fuel-icon"><svg><use href="#i-fuel"></use></svg></span><div><small>Average mileage</small><b>42.1 km/L</b></div><div><small>Since last refill</small><b>287 km</b></div></div>
+          </article>
+
+          <article class="card rides-card" id="history">
+            <div class="card-topline">
+              <div><span class="section-kicker">Your activity</span><h2>Recent rides</h2></div>
+              <a class="text-link" href="#history">All rides <svg><use href="#i-arrow"></use></svg></a>
+            </div>
+            <div class="ride-list">
+              <a class="ride-item featured" href="#"><span class="ride-route"><i class="route-symbol"><b></b><em></em></i><span><strong>Islamabad → Murree</strong><small>Yesterday · 08:12 AM</small></span></span><span class="ride-metrics"><b>68 km</b><small>1h 24m · 57 avg</small></span><svg><use href="#i-chevron"></use></svg></a>
+              <a class="ride-item" href="#"><span class="ride-route"><i class="route-symbol"><b></b><em></em></i><span><strong>Rawalpindi → Islamabad</strong><small>20 Sep · 05:46 PM</small></span></span><span class="ride-metrics"><b>24 km</b><small>38m · 42 avg</small></span><svg><use href="#i-chevron"></use></svg></a>
+              <a class="ride-item" href="#"><span class="ride-route"><i class="route-symbol"><b></b><em></em></i><span><strong>Evening City Loop</strong><small>18 Sep · 07:21 PM</small></span></span><span class="ride-metrics"><b>17 km</b><small>31m · 36 avg</small></span><svg><use href="#i-chevron"></use></svg></a>
+            </div>
+            <div class="ride-week"><span>WEEKLY GOAL</span><b>186 / 250 km</b><div><i style="width:74.4%"></i></div></div>
+          </article>
+        </section>
+
+        <section class="insight-grid" aria-label="Weather, rider progress, and safety">
+          <article class="weather-card">
+            <div><span class="section-kicker">Islamabad now</span><strong>27°</strong><p>Partly cloudy</p></div>
+            <div class="weather-art" aria-hidden="true"><i class="sun-orb"></i><span class="cloud-one"></span><span class="cloud-two"></span></div>
+            <div class="weather-details"><span><svg><use href="#i-wind"></use></svg><b>12 km/h</b><small>Wind</small></span><span><svg><use href="#i-drop"></use></svg><b>10%</b><small>Rain</small></span><em>Good to ride</em></div>
+          </article>
+
+          <article class="level-card" id="riders">
+            <span class="level-badge"><svg><use href="#i-trophy"></use></svg><b>12</b></span>
+            <div class="level-copy"><span class="section-kicker">Rider level</span><h2>Road Captain</h2><p>550 XP until Level 13</p><div class="xp-track"><i style="width:81.6%"></i></div><small><b>2,450</b> / 3,000 XP</small></div>
+            <div class="achievement-row"><span title="100 rides">100<small>RIDES</small></span><span title="Seven day streak">7<small>STREAK</small></span><span title="Road tripper"><svg><use href="#i-route"></use></svg><small>TRIPPER</small></span></div>
+          </article>
+
+          <article class="safety-card">
+            <div><span class="section-kicker">Safety center</span><h2>Ride protected</h2><p>Your emergency contact and live sharing are ready.</p></div>
+            <button class="sos-button" type="button"><span><svg><use href="#i-shield"></use></svg></span><b>SOS</b><small>Hold for help</small></button>
+          </article>
+        </section>
+
+        <footer class="dashboard-footer"><span>RideMate <b>Rider OS</b></span><p>Bike synced 2 minutes ago · All systems operational</p><a href="#settings">Manage preferences</a></footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

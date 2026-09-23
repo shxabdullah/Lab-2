@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A responsive Facebook home feed interface built with only HTML and CSS.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Facebook — Home</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230866ff'/%3E%3Cpath fill='white' d='M37.8 20H43v-8h-6.2C27.7 12 25 17.3 25 24v4h-6v8h6v16h9V36h7.2l1.3-8H34v-3.3c0-3.1 1.2-4.7 3.8-4.7Z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#feed">Skip to feed</a>
+  <svg class="svg-sprite" aria-hidden="true" focusable="false">
+    <symbol id="icon-search" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></symbol>
+    <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z"/></symbol>
+    <symbol id="icon-video" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="3"/><path d="m10 9 6 4-6 4V9ZM7 2v3m10-3v3"/></symbol>
+    <symbol id="icon-store" viewBox="0 0 24 24"><path d="m4 9-1 11h18L20 9M5 3h14l2 6H3l2-6Z"/><path d="M8 13v3m8-3v3"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21v-2a6 6 0 0 1 6-6h2a6 6 0 0 1 6 6v2m0-16a4 4 0 0 1 0 7.75M22 21v-2a6 6 0 0 0-4-5.65"/></symbol>
+    <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+    <symbol id="icon-message" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 9.4 9.4 0 0 1-3.7-.8L3 21l1.8-4.5A8.2 8.2 0 0 1 3 11.5 8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5Z"/><path d="m7 14 4-4 2.5 2 3.5-3"/></symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/></symbol>
+    <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+    <symbol id="icon-friends" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="3"/><path d="M2 20v-2a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v2m0-5.5a5 5 0 0 1 8 4V20"/></symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></symbol>
+    <symbol id="icon-save" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4V3Z"/></symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 2v6m10-6v6M3 10h18"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="icon-live" viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="12" rx="3"/><path d="m17 10 4-2v8l-4-2v-4Z"/></symbol>
+    <symbol id="icon-photo" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m4 17 5-4 4 3 3-2 4 3"/></symbol>
+    <symbol id="icon-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 10h.01M16 10h.01M8 14s1.5 3 4 3 4-3 4-3"/></symbol>
+    <symbol id="icon-dots" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></symbol>
+    <symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></symbol>
+    <symbol id="icon-like" viewBox="0 0 24 24"><path d="M7 10v11H3V10h4Zm0 10h10.2a2 2 0 0 0 2-1.6l1.6-7A2 2 0 0 0 18.8 9H15l.6-3.2A3.2 3.2 0 0 0 12.5 2L7 10Z"/></symbol>
+    <symbol id="icon-comment" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-9 8.5 9.8 9.8 0 0 1-4-.8L3 21l1.8-4.5A8.2 8.2 0 0 1 3 11.5 8.5 8.5 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5Z"/></symbol>
+    <symbol id="icon-share" viewBox="0 0 24 24"><path d="m21 3-8 18-4-8-8-4 20-6Z"/><path d="m9 13 5-5"/></symbol>
+    <symbol id="icon-gift" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13h18M12 9H8.5A2.5 2.5 0 1 1 11 6.5V9Zm0 0h3.5A2.5 2.5 0 1 0 13 6.5V9Z"/></symbol>
+    <symbol id="icon-magnify" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+    <symbol id="icon-edit" viewBox="0 0 24 24"><path d="m4 16-1 5 5-1L19 9l-4-4L4 16Z"/><path d="m13 7 4 4"/></symbol>
+  </svg>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <a class="brand" href="#" aria-label="Facebook home">f</a>
+      <label class="search-box" for="site-search">
+        <svg class="icon"><use href="#icon-search"></use></svg>
+        <input id="site-search" type="search" placeholder="Search Facebook" aria-label="Search Facebook">
+      </label>
+    </div>
+
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <a class="nav-tab is-active" href="#feed" aria-current="page" aria-label="Home">
+        <svg class="icon icon--lg"><use href="#icon-home"></use></svg>
+      </a>
+      <a class="nav-tab" href="#watch" aria-label="Watch">
+        <svg class="icon icon--lg"><use href="#icon-video"></use></svg>
+      </a>
+      <a class="nav-tab" href="#marketplace" aria-label="Marketplace">
+        <svg class="icon icon--lg"><use href="#icon-store"></use></svg>
+      </a>
+      <a class="nav-tab" href="#groups" aria-label="Groups">
+        <svg class="icon icon--lg"><use href="#icon-users"></use></svg>
+      </a>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="circle-button" type="button" aria-label="Menu">
+        <svg class="icon"><use href="#icon-grid"></use></svg>
+      </button>
+      <button class="circle-button" type="button" aria-label="Messenger">
+        <svg class="icon"><use href="#icon-message"></use></svg>
+        <span class="notification-badge" aria-label="3 unread messages">3</span>
+      </button>
+      <button class="circle-button" type="button" aria-label="Notifications">
+        <svg class="icon"><use href="#icon-bell"></use></svg>
+        <span class="notification-badge" aria-label="8 notifications">8</span>
+      </button>
+      <details class="account-menu">
+        <summary class="avatar avatar--me" aria-label="Open account menu">SA</summary>
+        <div class="account-panel">
+          <div class="account-profile">
+            <span class="avatar avatar--me">SA</span>
+            <div><strong>Sheikh Abdullah</strong><span>See your profile</span></div>
+          </div>
+          <hr>
+          <button type="button">Settings &amp; privacy <svg class="icon"><use href="#icon-chevron"></use></svg></button>
+          <button type="button">Display &amp; accessibility <svg class="icon"><use href="#icon-chevron"></use></svg></button>
+          <button type="button">Give feedback</button>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar left-sidebar" aria-label="Facebook shortcuts">
+      <nav class="side-nav">
+        <a class="side-link" href="#profile">
+          <span class="avatar avatar--me">SA</span>
+          <span>Sheikh Abdullah</span>
+        </a>
+        <a class="side-link" href="#friends">
+          <span class="side-nav__icon side-nav__icon--blue"><svg class="icon"><use href="#icon-friends"></use></svg></span>
+          <span>Friends</span>
+        </a>
+        <a class="side-link" href="#memories">
+          <span class="side-nav__icon side-nav__icon--cyan"><svg class="icon"><use href="#icon-clock"></use></svg></span>
+          <span>Memories</span>
+        </a>
+        <a class="side-link" href="#saved">
+          <span class="side-nav__icon side-nav__icon--purple"><svg class="icon"><use href="#icon-save"></use></svg></span>
+          <span>Saved</span>
+        </a>
+        <a class="side-link" href="#groups">
+          <span class="side-nav__icon side-nav__icon--blue"><svg class="icon"><use href="#icon-users"></use></svg></span>
+          <span>Groups</span>
+        </a>
+        <a class="side-link" href="#events">
+          <span class="side-nav__icon side-nav__icon--red"><svg class="icon"><use href="#icon-calendar"></use></svg></span>
+          <span>Events</span>
+        </a>
+        <button class="side-link" type="button">
+          <span class="side-nav__icon side-nav__icon--neutral"><svg class="icon"><use href="#icon-chevron"></use></svg></span>
+          <span>See more</span>
+        </button>
+      </nav>
+
+      <div class="shortcuts">
+        <div class="section-heading">
+          <h2>Your shortcuts</h2>
+          <button type="button">Edit</button>
+        </div>
+        <a class="side-link" href="#shortcut-design">
+          <span class="shortcut-thumb shortcut-thumb--design">D</span>
+          <span>Design Collective</span>
+        </a>
+        <a class="side-link" href="#shortcut-hiking">
+          <span class="shortcut-thumb shortcut-thumb--hiking">H</span>
+          <span>Weekend Hiking Club</span>
+        </a>
+        <a class="side-link" href="#shortcut-neighborhood">
+          <span class="shortcut-thumb shortcut-thumb--local">N</span>
+          <span>Our Neighborhood</span>
+        </a>
+      </div>
+
+      <footer class="sidebar-footer">
+        <a href="#privacy">Privacy</a><span> · </span><a href="#terms">Terms</a><span> · </span><a href="#advertising">Advertising</a><span> · </span><a href="#cookies">Cookies</a><span> · </span><a href="#more">More</a><span> · Meta © 2026</span>
+      </footer>
+    </aside>
+
+    <main id="feed" class="feed">
+      <h1 class="sr-only">Facebook home feed</h1>
+
+      <section class="stories" aria-label="Stories">
+        <article class="story-card">
+          <div class="story-card__profile-area">
+            <span class="avatar avatar--me avatar--story-owner">SA</span>
+          </div>
+          <div class="story-card__create-label">
+            <span class="story-card__plus"><svg class="icon"><use href="#icon-plus"></use></svg></span>
+            <strong>Create story</strong>
+          </div>
+        </article>
+
+        <article class="story-card story-card--photo story-card--one">
+          <img class="story-image" src="./assets/Daniyal.jpeg" alt="Daniyal">
+          <span class="avatar avatar--border avatar--maya">DH</span>
+          <strong>Daniyal Haider</strong>
+        </article>
+
+        <article class="story-card story-card--photo story-card--two">
+          <img class="story-image" src="./assets/Sheikh.jpeg" alt="Abdullah">
+          <span class="avatar avatar--border avatar--leo">SA</span>
+          <strong>Sheikh Abdullah</strong>
+        </article>
+
+        <article class="story-card story-card--photo story-card--three">
+          <div class="story-image" aria-hidden="true"></div>
+          <span class="avatar avatar--border avatar--nora">ZA</span>
+          <strong>Zain Ali</strong>
+        </article>
+
+        <button class="stories__next circle-button" type="button" aria-label="See more stories">›</button>
+      </section>
+
+      <section class="composer card" aria-label="Create a post">
+        <div class="composer-top">
+          <span class="avatar avatar--me">SA</span>
+          <button type="button">What's on your mind, Abdullah?</button>
+        </div>
+        <div class="composer-actions">
+          <button class="composer-action" type="button">
+            <svg class="icon composer-action__live"><use href="#icon-live"></use></svg>
+            <span>Live video</span>
+          </button>
+          <button class="composer-action" type="button">
+            <svg class="icon composer-action__photo"><use href="#icon-photo"></use></svg>
+            <span>Photo/video</span>
+          </button>
+          <button class="composer-action" type="button">
+            <svg class="icon composer-action__feeling"><use href="#icon-smile"></use></svg>
+            <span>Feeling/activity</span>
+          </button>
+        </div>
+      </section>
+
+      <article class="card">
+        <header class="post-header">
+          <span class="avatar avatar--maya">DH</span>
+          <div class="post-author">
+            <a href="#maya">Daniyal Haider</a>
+            <span><time datetime="2026-09-18T07:30:00-07:00">2h</time> · <svg class="icon icon--tiny"><use href="#icon-globe"></use></svg></span>
+          </div>
+          <button class="post-more" type="button" aria-label="Post options"><svg class="icon"><use href="#icon-dots"></use></svg></button>
+        </header>
+        <p class="post-text">Above the noise. 🌿</p>
+        <img class="post-image" src="./assets/Daniyal.jpeg" alt="Blue alpine lake beneath rugged mountains and a clear sky">
+        <div class="post-stats">
+          <div class="reactions">
+            <span class="reaction reaction--like">👍</span><span class="reaction reaction--love">♥</span><span>248</span>
+          </div>
+          <div class="post-counts"><button type="button">32 comments</button><span> · </span><button type="button">6 shares</button></div>
+        </div>
+        <div class="post-actions">
+          <button type="button"><svg class="icon"><use href="#icon-like"></use></svg><span>Like</span></button>
+          <button type="button"><svg class="icon"><use href="#icon-comment"></use></svg><span>Comment</span></button>
+          <button type="button"><svg class="icon"><use href="#icon-share"></use></svg><span>Share</span></button>
+        </div>
+        <div class="comment-box">
+          <span class="avatar avatar--me avatar--small">SA</span>
+          <label>
+            <span class="sr-only">Write a comment</span>
+            <input type="text" placeholder="Write a comment…">
+            <svg class="icon"><use href="#icon-smile"></use></svg>
+          </label>
+        </div>
+      </article>
+
+      <article class="card">
+        <header class="post-header">
+          <span class="avatar avatar--daniel">ZA</span>
+          <div class="post-author">
+            <a href="#daniel">Zain Ali</a>
+            <span><time datetime="2026-09-18T04:30:00-07:00">5h</time> · <svg class="icon icon--tiny"><use href="#icon-friends"></use></svg></span>
+          </div>
+          <button class="post-more" type="button" aria-label="Post options"><svg class="icon"><use href="#icon-dots"></use></svg></button>
+        </header>
+        <div class="quote-post">
+          <p>Discipline builds the body motivation only starts.</p>
+        </div>
+        <div class="post-stats">
+          <div class="reactions">
+            <span class="reaction reaction--like">👍</span><span class="reaction reaction--care">🤗</span><span>126</span>
+          </div>
+          <div class="post-counts"><button type="button">18 comments</button><span> · </span><button type="button">2 shares</button></div>
+        </div>
+        <div class="post-actions">
+          <button type="button"><svg class="icon"><use href="#icon-like"></use></svg><span>Like</span></button>
+          <button type="button"><svg class="icon"><use href="#icon-comment"></use></svg><span>Comment</span></button>
+          <button type="button"><svg class="icon"><use href="#icon-share"></use></svg><span>Share</span></button>
+        </div>
+      </article>
+    </main>
+
+    <aside class="sidebar right-sidebar" aria-label="Contacts and updates">
+      <section class="sponsored">
+        <div class="section-heading"><h2>Sponsored</h2></div>
+        <a class="sponsored-card" href="#sponsor">
+          <div class="sponsored-card__image">N</div>
+          <div><strong>Make space for better ideas.</strong><span>notedesk.example</span></div>
+        </a>
+      </section>
+
+      <section class="birthdays">
+        <div class="section-heading"><h2>Birthdays</h2></div>
+        <a href="#birthdays" class="birthday-row">
+          <svg class="icon"><use href="#icon-gift"></use></svg>
+          <p><strong>Daniyal Haider</strong> and <strong>2 others</strong> have birthdays today.</p>
+        </a>
+      </section>
+
+      <section class="contacts">
+        <div class="section-heading contacts__heading">
+          <h2>Contacts</h2>
+          <div>
+            <button type="button" aria-label="Start a video call"><svg class="icon"><use href="#icon-live"></use></svg></button>
+            <button type="button" aria-label="Search contacts"><svg class="icon"><use href="#icon-magnify"></use></svg></button>
+            <button type="button" aria-label="Contact options"><svg class="icon"><use href="#icon-dots"></use></svg></button>
+          </div>
+        </div>
+        <ul class="contact-list">
+          <li><a href="#maya"><span class="avatar avatar--maya"><span class="online-dot"></span>MC</span><span>Daniyal Haider</span></a></li>
+          <li><a href="#daniel"><span class="avatar avatar--daniel"><span class="online-dot"></span>DB</span><span>Zain Ali</span></a></li>
+          <li><a href="#sophia"><span class="avatar avatar--sophia"><span class="online-dot"></span>SM</span><span>Moeed Raza</span></a></li>
+          <li><a href="#leo"><span class="avatar avatar--leo"><span class="online-dot"></span>LA</span><span>Wasif Mughal</span></a></li>
+          <li><a href="#nora"><span class="avatar avatar--nora"><span class="online-dot"></span>NP</span><span>Abubakr</span></a></li>
+          <li><a href="#ethan"><span class="avatar avatar--ethan">EW</span><span>Sheikh Saad</span></a></li>
+          <li><a href="#ava"><span class="avatar avatar--ava"><span class="online-dot"></span>AT</span><span>Rana Hasnain</span></a></li>
+          <li><a href="#marcus"><span class="avatar avatar--marcus"><span class="online-dot"></span>MJ</span><span>Sheikh Hassan</span></a></li>
+        </ul>
+      </section>
+
+      <button class="new-message circle-button" type="button" aria-label="New message">
+        <svg class="icon"><use href="#icon-edit"></use></svg>
+      </button>
+    </aside>
+  </div>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a class="is-active" href="#feed" aria-label="Home"><svg class="icon"><use href="#icon-home"></use></svg></a>
+    <a href="#friends" aria-label="Friends"><svg class="icon"><use href="#icon-friends"></use></svg></a>
+    <a href="#create" aria-label="Create"><span class="mobile-nav__create"><svg class="icon"><use href="#icon-plus"></use></svg></span></a>
+    <a href="#notifications" aria-label="Notifications"><svg class="icon"><use href="#icon-bell"></use></svg></a>
+    <a href="#menu" aria-label="Menu"><svg class="icon"><use href="#icon-grid"></use></svg></a>
+  </nav>
+</body>
+</html>
